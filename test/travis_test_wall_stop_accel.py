@@ -31,7 +31,7 @@ class WallStopTest(unittest.TestCase):
         left, right = self.set_and_get(15,0,20,15) #total: 50
         self.assertTrue(left == right == 0,"can't stop again")
 
-if __name__ == '__main__'
+if __name__ == '__main__':
     time.sleep(3)
     rospy.init_node('travis_test_wall_stop_accel')
     rostest.rosrun('pimouse_run_corridor', 'travis_test_wall_stop_accel', WallStopTest)
