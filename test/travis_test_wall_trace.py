@@ -26,7 +26,6 @@ class WallTraceTest(unittest.TestCase):
 
         #time.sleep(5.0)
         left, right = self.set_and_get(0,10,0,0) #cuve to left
-        print left, right
         self.assertTrue(left < right, "don't curve to left")
 
         left, right = self.set_and_get(0,200,0,0) #curve to right
