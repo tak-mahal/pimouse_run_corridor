@@ -19,16 +19,16 @@ class WallAroundTest(unittest.TestCase):
 
     def test_io(self):
         left, right = self.set_and_get(60,0,0,0) #front_left > 50
-        self.assertTrue(left < right, "don't turn left")
-
-        left, right = self.set_and_get(0,0,60,0) #right_side > 50
         self.assertTrue(left > right, "don't turn right")
 
-        left, right = self.set_and_get(0,60,0,0) #left_side > 50
+        left, right = self.set_and_get(0,0,60,0) #right_side > 50
         self.assertTrue(left < right, "don't turn left")
 
+        left, right = self.set_and_get(0,60,0,0) #left_side > 50
+        self.assertTrue(left > right, "don't turn right")
+
         left, right = self.set_and_get(0,10,0,0) #curve to right
-        self.assertTrue(left > right ,"don't curve to right")
+        self.assertTrue(left < right ,"don't curve to left")
 
         #left, right = self.set_and_get(0,5,0,0) #don't controll when far from wall
         #self.assertTrue(0 < left == right, "curve wrongly")
