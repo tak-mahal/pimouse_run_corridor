@@ -43,7 +43,7 @@ class WallAround():
             elif self.too_left(self.sensor_values):
                 data.angular.z = -math.pi
             else:
-                e = 50.0 - self.sensor_values.left_side
+                e = 50 - self.sensor_values.left_side
                 data.angular.z = e * math.pi / 180.0
 
             self.cmd_vel.publish(data)
