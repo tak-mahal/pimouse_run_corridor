@@ -25,6 +25,7 @@ class WallTrace():
         while not rospy.is_shutdown():
             s = self.sensor_values
             data.linear.x += accel
+            #print(s.left_side)
 
             if s.sum_forward >= 50:    data.linear.x = 0.0
             elif data.linear.x <= 0.2: data.linear.x = 0.2
@@ -34,8 +35,8 @@ class WallTrace():
             elif s.left_side < 10:  data.angular.z = 0.0
             else:
                 target = 50
-                error = (target - s.left_side)/50
-                data.angular.z = error * 3 * math.pi / 180
+                error = (target - s.left_side)/50.0
+                data.angular.z = error * 3 * math.pi / 180.0
 
             self.cmd_vel.publish(data)
             rate.sleep()
