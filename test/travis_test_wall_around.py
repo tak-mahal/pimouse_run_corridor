@@ -21,10 +21,10 @@ class WallAroundTest(unittest.TestCase):
         left, right = self.set_and_get(60,0,0,0) #front_left > 50
         self.assertTrue(left < right, "don't turn left")
 
-        left, right = self.set_and_get(0,60,0,0) #right_side > 50
+        left, right = self.set_and_get(0,0,60,0) #right_side > 50
         self.assertTrue(left > right, "don't turn right")
 
-        left, right = self.set_and_get(0,0,60,0) #left_side > 50
+        left, right = self.set_and_get(0,60,0,0) #left_side > 50
         self.assertTrue(left < right, "don't turn left")
 
         left, right = self.set_and_get(0,10,0,0) #curve to right
