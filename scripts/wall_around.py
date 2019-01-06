@@ -5,7 +5,7 @@ from std_srvs.srv import Trigger, TriggerResponse
 from pimouse_ros.msg import LightSensorValues
 import math
 
-class WallTrace():
+class WallAround():
     def __init__(self):
         self.cmd_vel = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
 
@@ -39,12 +39,12 @@ class WallTrace():
             if self.wall_front(self.sensor_values):
                 data.angular.z = -math.pi
             elif self.too_right(self.sensor_values):
-                data.angular.z = -math.pi
+                data.angular.z = math.pi
             elif self.too_left(self.sensor_values):
                 data.angular.z = -math.pi
             else:
-                e = 50 - self.sensor_values.left_side
-                data.angular.z = e * math.pi / 180
+                e = 50.0 - self.sensor_values.left_side
+                data.angular.z = e * math.pi / 180.0
 
             self.cmd_vel.publish(data)
             rate.sleep()
@@ -55,4 +55,4 @@ if __name__ == '__main__':
     rospy.wait_for_service('/motor_off')
     rospy.on_shutdown(rospy.ServiceProxy('/motor_off', Trigger).call)
     rospy.ServiceProxy('/motor_on', Trigger).call()
-    WallTrace().run()
+    WallAround().run()
